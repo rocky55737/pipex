@@ -28,7 +28,6 @@ typedef struct s_pipe_data
 	int		cmd_cnt;
 }	t_pipe_data;
 
-int			input_err_check(int input_cnt, char **input);
 int			h_input_err_check(int input_cnt, char **input);
 int			m_input_err_check(int input_cnt, char **input);
 #endif

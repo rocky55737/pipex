@@ -12,42 +12,19 @@
 
 #include "pipex_bonus.h"
 
-int			input_err_check(int input_cnt, char **input);
 int			h_input_err_check(int input_cnt, char **input);
 int			m_input_err_check(int input_cnt, char **input);
 
-int	input_err_check(int input_cnt, char **input)
-{
-	int	input_error;
-
-	if (ft_strcmp(input[1], "here_doc") == 0)
-	{
-		input_error = h_input_err_check(input_cnt, input);
-		if (input_error == -1)
-			return (-1);
-		else
-			return (1);
-	}
-	else
-	{
-		input_error = m_input_err_check(input_cnt, input);
-		if (input_error == -1)
-			return (-1);
-		else
-			return (0);
-	}
-}
-
 int	h_input_err_check(int input_cnt, char **input)
 {
-	if (input_cnt >= 6)
-		return (0);
-	return (-1);
+	if (input_cnt >= 6 && ft_strcmp(input[1], "here_doc") == 0)
+		return (1);
+	return (0);
 }
 
 int	m_input_err_check(int input_cnt, char **input)
 {
 	if (input_cnt >= 5 && access(input[1], R_OK) == 0)
-		return (0);
-	return (-1);
+		return (1);
+	return (0);
 }

@@ -14,70 +14,51 @@
 #include "../get_next_line/get_next_line_bonus.h"
 #include "../libft/libft.h"
 
-void		here_doc(char *limiter, int *infile_fd);
-t_pipe_data	*here_doc_input(int ac, char **av);
-t_pipe_data	*multi_pipe_input(int ac, char **av);
-void		pipex(t_pipe_data *p_data);
-void		free_pipe(t_pipe_data *p_data);
+void	here_doc(char *limiter, int *infile_fd);
+void	pipex_bonus(int input_cnt, char **input);
+void	here_doc(int input_cnt, char **input);
+void	multi_pipe(int input_cnt, char **input);
+t_pipe_data	*h_pipe_data_set(int input_cnt, char **input);
 
 int	main(int argc, char **argv)
 {
-	t_pipe_data	*p_data;
-	int			input_error_check;
-	int			infile_fd;
-	int			outfile_fd;
-
-	input_error_check = input_err_check(argc, argv);
-	if (input_error_check == 0)
-		p_data = multi_pipe_input(argc, argv);
-	else if (input_error_check == 1)
-	{
-		here_doc(argv[2], &infile_fd);
-		p_data = here_doc_input(argc, argv);
-	}
-	else
-	{
-		perror("Input Error");
-		return (0);
-	}
-	pipex(p_data);
-	free_pipe(p_data);
+	pipex_bonus(argc, argv);
 	return (0);
 }
 
-void	here_doc(char *limiter, int *infile_fd)
+void	pipex_bonus(int input_cnt, char **input)
 {
-	char	*buff;
-
-	*infile_fd = open("/tmp/here_doc", O_CREAT | O_RDWR);
-	buff = &(get_next_line(0)[0]);
-	while (ft_strcmp(buff, limiter) != 0)
-	{
-		write(*infile_fd, buff, ft_strlen(buff));
-		buff = &(get_next_line(0)[0]);
-	}
+	if (h_input_err_check(input_cnt, input))
+		here_doc(input_cnt, input);
+	else if (m_input_err_check(input_cnt, input))
+		multi_pipe(input_cnt, input);
+	else
+		perror("INPUT ERROR");
+	return (0);
 }
 
-t_pipe_data	*here_doc_input(int ac, char **av)
+void	here_doc(int input_cnt, char **input)
+{
+	t_pipe_data	*p_data;
+
+	p_data = h_pipe_data_set(input_cnt, input);
+	m_pipe(p_data);
+	h_delet_infile(p_data->infile);
+	free_all(p_data);
+}
+
+void	h_pipe_data_set(int input_cnt, char **input)
 {
 	t_pipe_data	*p_data;
 
 	p_data = (t_pipe_data *)malloc(sizeof(t_pipe_data));
-	p_data->infile = ft_strdup("/tmp/here_doc");
-	p_data->cmd = &(av[3]);
-	p_data->outfile = ft_strdup(av[ac - 1]);
-	p_data->cmd_cnt = ac - 4;
-	return (p_data);
-}
-
-t_pipe_data	*multi_pipe_input(int ac, char **av)
-{
-	t_pipe_data	*p_data;
-
-	p_data = (t_pipe_data *)malloc(sizeof(t_pipe_data));
-	p_data->infile = ft_strdup(av[1]);
-	p_data->cmd = &(av[2]);
-	p_data->outfile = ft_strdup(av[ac - 1]);
-	p_data->cmd_cnt = ac - 3;
+	if (p_data == 0)
+		{
+			perror("MALLOC ERROR");
+			exit();
+		}
+	p_data->infile = h_infile_create();
+	p_data->outfile = h_outfile_open();
+	pipe_open();
 	return (p_data);
 }
