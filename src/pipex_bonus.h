@@ -19,15 +19,21 @@
 # include <string.h>
 # include <stdlib.h>
 # include <sys/wait.h>
+# include "../get_next_line/get_next_line_bonus.h"
+# include "../libft/libft.h"
 
 typedef struct s_pipe_data
 {
-	char	*infile;
-	char	*outfile;
 	char	**cmd;
+	int		infile;
+	int		outfile;
 	int		cmd_cnt;
 }	t_pipe_data;
 
-int			h_input_err_check(int input_cnt, char **input);
-int			m_input_err_check(int input_cnt, char **input);
+int		h_input_err_check(int input_cnt, char **input);
+int		m_input_err_check(int input_cnt, char **input);
+
+void	here_doc(int input_cnt, char **input);
+void	multi_pipe(int input_cnt, char **input);
+
 #endif
