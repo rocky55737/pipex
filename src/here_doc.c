@@ -1,6 +1,6 @@
 #include "pipex_bonus.h"
 
-void		here_doc(int input_cnt, char **input);
+void				here_doc(int input_cnt, char **input);
 static t_pipe_data	*h_pipe_data_set(int input_cnt, char **input);
 static int			h_infile_create();
 static int			h_outfile_open(char *outfile_path);

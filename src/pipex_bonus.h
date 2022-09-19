@@ -35,5 +35,6 @@ int		m_input_err_check(int input_cnt, char **input);
 
 void	here_doc(int input_cnt, char **input);
 void	multi_pipe(int input_cnt, char **input);
+void	m_pipe(t_pipe_data *p_data);
 
 #endif
