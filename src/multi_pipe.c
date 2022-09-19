@@ -4,7 +4,6 @@ void				multi_pipe(int input_cnt, char **input);
 static t_pipe_data	*m_pipe_data_set(int input_cnt, char **input);
 static int			m_infile_open(char *infile_path);
 static int			m_outfile_open(char *outfile_path);
-void				m_pipe(t_pipe_data *p_data);
 
 void	multi_pipe(int input_cnt, char **input)
 {
@@ -55,5 +54,3 @@ static int	m_outfile_open(char *outfile_path)
 		}
 	return (fd);
 }
-
-void	m_pipe(t_pipe_data *p_data);
