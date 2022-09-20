@@ -21,7 +21,8 @@ void	m_pipe(t_pipe_data *p_data);
 			perror("fork error: ");
 			exit(1);
 		}
-		child(pipe_cnt, p_data);
+		//infile fd outfile fd 판단후 넣기
+		child(pids, in, out, p_data);
 		pipe_close(pipe[pipe_cnt % 2]);
 	}
 	waitpid(pids);
