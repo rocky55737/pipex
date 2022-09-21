@@ -6,7 +6,7 @@
 /*   By: rhong <rhong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 17:08:49 by rhong             #+#    #+#             */
-/*   Updated: 2022/09/21 17:17:19 by rhong            ###   ########.fr       */
+/*   Updated: 2022/09/21 18:51:26 by rhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct s_child_data
 	int			fd_to_close[2];
 	int			pipe_cnt;
 	t_pipe_data	*p_d;
-}	t_chlid_data;
+}	t_child_data;
 int		h_input_err_check(int input_cnt, char **input);
 int		m_input_err_check(int input_cnt, char **input);
 

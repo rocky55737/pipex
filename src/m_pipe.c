@@ -6,7 +6,7 @@
 /*   By: rhong <rhong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 16:42:44 by rhong             #+#    #+#             */
-/*   Updated: 2022/09/21 17:17:00 by rhong            ###   ########.fr       */
+/*   Updated: 2022/09/21 19:03:40 by rhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void		m_pipe(t_pipe_data *p_data);
 static void	pipe_open(int pipe_fd[2]);
 void		fd_arr_close(int fd_arr[2]);
+static void	wait_pids(pid_t *pids, int cnt);
 
 void	m_pipe(t_pipe_data *p_data)
 {
@@ -33,10 +34,11 @@ void	m_pipe(t_pipe_data *p_data)
 			perror("fork error: ");
 			exit(1);
 		}
-		child(set_child_data(pids, pipe_cnt, p_data));
+		child(child_data_set(pids, pipe_cnt, p_data, pipes));
 		fd_arr_close(pipes[pipe_cnt % 2]);
+		pipe_cnt++;
 	}
-	waitpid(pids);
+	wait_pids(pids, p_data->cmd_cnt);
 }
 
 void	pipe_open(int pipe_fd[2])
@@ -65,5 +67,17 @@ void	fd_arr_close(int fd_arr[2])
 			perror("pipe close error: ");
 			exit(-1);
 		}
+	}
+}
+
+static void	wait_pids(pid_t *pids, int cnt)
+{
+	int	pid_cnt;
+
+	pid_cnt = 0;
+	while (pid_cnt < cnt)
+	{
+		waitpid(pids[pid_cnt], 0, 0);
+		pid_cnt++;
 	}
 }
