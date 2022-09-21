@@ -6,7 +6,7 @@
 /*   By: rhong <rhong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 16:42:44 by rhong             #+#    #+#             */
-/*   Updated: 2022/09/21 19:03:40 by rhong            ###   ########.fr       */
+/*   Updated: 2022/09/21 19:45:36 by rhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	fd_arr_close(int fd_arr[2])
 			exit(-1);
 		}
 	}
+	fd_arr[0] = 0;
 	if (fd_arr[1] != 0)
 	{
 		if (close(fd_arr[1]) < -1)
@@ -68,6 +69,7 @@ void	fd_arr_close(int fd_arr[2])
 			exit(-1);
 		}
 	}
+	fd_arr[1] = 0;
 }
 
 static void	wait_pids(pid_t *pids, int cnt)

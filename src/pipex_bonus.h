@@ -6,7 +6,7 @@
 /*   By: rhong <rhong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 17:08:49 by rhong             #+#    #+#             */
-/*   Updated: 2022/09/21 18:51:26 by rhong            ###   ########.fr       */
+/*   Updated: 2022/09/21 19:46:03 by rhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,8 @@ void	here_doc(int input_cnt, char **input);
 void	multi_pipe(int input_cnt, char **input);
 void	m_pipe(t_pipe_data *p_data);
 void	fd_arr_close(int fd_arr[2]);
+
+t_child_data	child_data_set(int *pids, int pipe_cnt, t_pipe_data *p_data, \
+int pipes[2][2]);
 
 #endif

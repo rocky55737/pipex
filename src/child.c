@@ -6,7 +6,7 @@
 /*   By: rhong <rhong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 16:42:03 by rhong             #+#    #+#             */
-/*   Updated: 2022/09/21 19:24:47 by rhong            ###   ########.fr       */
+/*   Updated: 2022/09/21 19:45:33 by rhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,26 +38,14 @@ int pipes[2][2])
 	c_data.pid = pids[pipe_cnt];
 	c_data.pipe_cnt = pipe_cnt;
 	c_data.p_d = p_data;
+	c_data.fd_to_close[1] = 0;
+	c_data.fd_in_out[0] = pipes[(pipe_cnt + 1) % 2][0];
+	c_data.fd_in_out[1] = pipes[pipe_cnt][1];
+	c_data.fd_to_close[0] = pipes[(pipe_cnt + 1) % 2][1];
+	c_data.fd_to_close[0] = pipes[pipe_cnt][0];
 	if (pipe_cnt == 0)
-	{
 		c_data.fd_in_out[0] = p_data->infile;
-		c_data.fd_in_out[1] = pipes[pipe_cnt][1];
-		c_data.fd_to_close[0] = pipes[pipe_cnt][0];
-		c_data.fd_to_close[1] = 0;
-	}
 	else if (pipe_cnt == p_data->cmd_cnt - 1)
-	{
-		c_data.fd_in_out[0] = pipes[(pipe_cnt + 1) % 2][0];
 		c_data.fd_in_out[1] = p_data->outfile;
-		c_data.fd_to_close[0] = pipes[(pipe_cnt + 1) % 2][1];
-		c_data.fd_to_close[1] = 0;
-	}
-	else
-	{
-		c_data.fd_in_out[0] = pipes[(pipe_cnt + 1) % 2][0];
-		c_data.fd_in_out[1] = pipes[pipe_cnt][1];
-		c_data.fd_to_close[0] = pipes[(pipe_cnt + 1) % 2][1];
-		c_data.fd_to_close[0] = pipes[pipe_cnt][0];
-	}
 	return (c_data);
 }
