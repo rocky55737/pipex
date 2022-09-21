@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   m_pipe.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rhong <rhong@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/21 16:42:44 by rhong             #+#    #+#             */
+/*   Updated: 2022/09/21 17:17:00 by rhong            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex_bonus.h"
 
 void		m_pipe(t_pipe_data *p_data);
 static void	pipe_open(int pipe_fd[2]);
-static void	pipe_close(int pipe_fd[2]);
+void		fd_arr_close(int fd_arr[2]);
 
-void	m_pipe(t_pipe_data *p_data);
+void	m_pipe(t_pipe_data *p_data)
 {
 	int		pipe_cnt;
 	int		pipes[2][2];
@@ -16,14 +28,13 @@ void	m_pipe(t_pipe_data *p_data);
 	{
 		pipe_open(pipes[pipe_cnt % 2]);
 		pids[pipe_cnt] = fork();
-		if (pid[pipe_cnt] < 0)
+		if (pids[pipe_cnt] < 0)
 		{
 			perror("fork error: ");
 			exit(1);
 		}
-		//infile fd outfile fd 판단후 넣기
-		child(pids, in, out, p_data);
-		pipe_close(pipe[pipe_cnt % 2]);
+		child(set_child_data(pids, pipe_cnt, p_data));
+		fd_arr_close(pipes[pipe_cnt % 2]);
 	}
 	waitpid(pids);
 }
@@ -37,16 +48,22 @@ void	pipe_open(int pipe_fd[2])
 	}
 }
 
-void	pipe_close(int pipe_fd[2])
+void	fd_arr_close(int fd_arr[2])
 {
-	if (close(pipe_fd[0]) < -1)
+	if (fd_arr[0] != 0)
 	{
-		perror("pipe close error: ");
-		exit(-1);
+		if (close(fd_arr[0]) < -1)
+		{
+			perror("pipe close error: ");
+			exit(-1);
+		}
 	}
-	if (close(pipe_fd[1]) < -1)
+	if (fd_arr[1] != 0)
 	{
-		perror("pipe close error: ");
-		exit(-1);
+		if (close(fd_arr[1]) < -1)
+		{
+			perror("pipe close error: ");
+			exit(-1);
+		}
 	}
 }
