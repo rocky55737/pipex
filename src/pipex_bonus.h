@@ -28,6 +28,7 @@ typedef struct s_pipe_data
 	int		infile;
 	int		outfile;
 	int		cmd_cnt;
+	char	*environ;
 }	t_pipe_data;
 typedef struct s_child_data
 {

@@ -12,21 +12,21 @@
 
 #include "pipex_bonus.h"
 
-void				multi_pipe(int input_cnt, char **input);
-static t_pipe_data	*m_pipe_data_set(int input_cnt, char **input);
+void				multi_pipe(int input_cnt, char **input, char *environ);
+static t_pipe_data	*m_pipe_data_set(int input_cnt, char **input, char *environ);
 static int			m_infile_open(char *infile_path);
 static int			m_outfile_open(char *outfile_path);
 
-void	multi_pipe(int input_cnt, char **input)
+void	multi_pipe(int input_cnt, char **input, char *environ)
 {
 	t_pipe_data	*p_data;
 
-	p_data = m_pipe_data_set(input_cnt, input);
+	p_data = m_pipe_data_set(input_cnt, input, environ);
 	m_pipe(p_data);
 	free_all(p_data);
 }
 
-static t_pipe_data	*m_pipe_data_set(int input_cnt, char **input)
+static t_pipe_data	*m_pipe_data_set(int input_cnt, char **input, char *environ)
 {
 	t_pipe_data	*p_data;
 
@@ -40,6 +40,7 @@ static t_pipe_data	*m_pipe_data_set(int input_cnt, char **input)
 	p_data->outfile = m_outfile_open(input[input_cnt - 1]);
 	p_data->cmd_cnt = input_cnt - 3;
 	p_data->cmd = &(input[2]);
+	p_data->environ = environ;
 	return (p_data);
 }
 
