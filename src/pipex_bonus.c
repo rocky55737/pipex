@@ -12,7 +12,7 @@
 
 #include "pipex_bonus.h"
 
-void	pipex_bonus(int input_cnt, char **input, char *environ);
+void	pipex_bonus(int input_cnt, char **input, char **environ);
 
 int	main(int argc, char **argv, char *environ)
 {
@@ -20,7 +20,7 @@ int	main(int argc, char **argv, char *environ)
 	return (0);
 }
 
-void	pipex_bonus(int input_cnt, char **input, char *environ)
+void	pipex_bonus(int input_cnt, char **input, char **environ)
 {
 	if (h_input_err_check(input_cnt, input))
 		here_doc(input_cnt, input, environ);

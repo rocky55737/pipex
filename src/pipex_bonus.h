@@ -28,7 +28,7 @@ typedef struct s_pipe_data
 	int		infile;
 	int		outfile;
 	int		cmd_cnt;
-	char	*environ;
+	char	**environ;
 }	t_pipe_data;
 typedef struct s_child_data
 {
@@ -41,8 +41,8 @@ typedef struct s_child_data
 int		h_input_err_check(int input_cnt, char **input);
 int		m_input_err_check(int input_cnt, char **input);
 
-void	here_doc(int input_cnt, char **input);
-void	multi_pipe(int input_cnt, char **input);
+void	here_doc(int input_cnt, char **input, char **environ);
+void	multi_pipe(int input_cnt, char **input, char **environ);
 void	m_pipe(t_pipe_data *p_data);
 void	fd_arr_close(int fd_arr[2]);
 

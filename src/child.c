@@ -24,7 +24,7 @@ void	child(t_child_data	c_data)
 	if (c_data.pid != 0)
 		return ;
 	command = ft_split(c_data.p_d->cmd[c_data.pipe_cnt], ' ');
-	cmd_path = cmd_path_find(command[1]);
+	cmd_path = cmd_path_find(command[1], c_data.p_d->environ);
 	io_dup(c_data.fd_in_out);
 	fd_arr_close(c_data.fd_to_close);
 	execve(cmd_path, command, 0);
@@ -48,4 +48,11 @@ int pipes[2][2])
 	else if (pipe_cnt == p_data->cmd_cnt - 1)
 		c_data.fd_in_out[1] = p_data->outfile;
 	return (c_data);
+}
+
+char *cmd_path_find(char *cmd, char **environ)
+{
+	if (access(cmd, X_OK) == 0)
+		return (cmd);
+	else 
 }
