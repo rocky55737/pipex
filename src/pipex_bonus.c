@@ -6,7 +6,7 @@
 /*   By: rhong <rhong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 17:07:05 by rhong             #+#    #+#             */
-/*   Updated: 2022/09/26 18:43:29 by rhong            ###   ########.fr       */
+/*   Updated: 2022/09/26 19:03:06 by rhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	pipex_bonus(int input_cnt, char **input, char **environ);
 
-int	main(int argc, char **argv, char *environ)
+int	main(int argc, char **argv, char **environ)
 {
 	pipex_bonus(argc, argv, environ);
 	return (0);

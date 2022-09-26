@@ -15,7 +15,7 @@ OBJS = $(SRCS:.c=.o)
 OBJS_B = $(SRCS_B:.c=.o)
 
 ifdef WITH_BONUS
-	TOTAL_OBJS = $(OBJS) $(OBJS_B) $(HEADER_B)
+	TOTAL_OBJS = $(OBJS_B) $(HEADER_B)
 else
 	TOTAL_OBJS = $(OBJS) $(HEADER)
 endif
