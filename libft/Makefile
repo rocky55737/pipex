@@ -6,7 +6,7 @@
 #    By: rhong <rhong@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/28 14:45:33 by rhong             #+#    #+#              #
-#    Updated: 2022/09/26 18:31:23 by rhong            ###   ########.fr        #
+#    Updated: 2022/09/26 19:36:28 by rhong            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,9 @@ clean :
 fclean : clean
 	rm -rf $(NAME)
 
-re : fclean all
+re :
+	make fclean
+	make all
 
 bonus :
 	make WITH_BONUS=1

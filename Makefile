@@ -22,7 +22,7 @@ $(NAME): $(TOTAL_OBJS) $(LIB)
 	$(CC) $(CFLAGS) -c $<
 
 $(LIB):
-	make bonus -C ./libft; make bonus -C ./get_next_line
+	make bonus -j -C ./libft; make bonus -j -C ./get_next_line
 
 clean :
 	rm -rf $(OBJS_B); make clean -C ./libft; make clean -C ./get_next_line
@@ -30,6 +30,8 @@ clean :
 fclean : clean
 	rm -rf $(NAME); make fclean -C ./libft; make fclean -C ./get_next_line
 
-re : fclean all
+re :
+	make fclean
+	make all
 
 .PHONY: all clean fclean re

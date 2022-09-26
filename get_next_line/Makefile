@@ -34,7 +34,9 @@ clean :
 fclean : clean
 	rm -rf $(NAME)
 
-re : fclean all
+re :
+	make fclean
+	make all
 
 bonus :
 	make WITH_BONUS=1
