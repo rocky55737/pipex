@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   here_doc.c                                         :+:      :+:    :+:   */
+/*   here_doc_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rhong <rhong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 16:40:45 by rhong             #+#    #+#             */
-/*   Updated: 2022/09/21 16:40:55 by rhong            ###   ########.fr       */
+/*   Updated: 2022/09/26 17:50:13 by rhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_bonus.h"
 
-void				here_doc(int input_cnt, char **input, char *environ);
-static t_pipe_data	*h_pipe_data_set(int input_cnt, char **input);
+void				here_doc(int input_cnt, char **input, char **environ);
+static t_pipe_data	*h_pipe_data_set(int input_cnt, char **input, char **environ);
 static int			h_infile_create(void);
 static int			h_outfile_open(char *outfile_path);
+static void			h_delet_infile(int infile_fd);
 
-void	here_doc(int input_cnt, char **input, char *environ)
+void	here_doc(int input_cnt, char **input, char **environ)
 {
 	t_pipe_data	*p_data;
 
@@ -27,21 +28,28 @@ void	here_doc(int input_cnt, char **input, char *environ)
 		perror("MALLOC P_DATA ERROR: ");
 		exit(1);
 	}
-	p_data = h_pipe_data_set(input_cnt, input);
+	p_data = h_pipe_data_set(input_cnt, input, environ);
 	m_pipe(p_data);
 	h_delet_infile(p_data->infile);
 	free_all(p_data);
 }
 
-static t_pipe_data	*h_pipe_data_set(int input_cnt, char **input)
+static t_pipe_data	*h_pipe_data_set(int input_cnt, char **input, char **environ)
 {
-	t_pipe_data	p_data;
+	t_pipe_data	*p_data;
 
-	p_data.infile = h_infile_create();
-	p_data.outfile = h_outfile_open(input[input_cnt - 1]);
-	p_data.cmd_cnt = input_cnt - 4;
-	p_data.cmd = &(input[3]);
-	return (&p_data);
+	p_data = (t_pipe_data *)malloc(sizeof(t_pipe_data));
+	if (p_data == 0)
+	{
+		perror("MALLOC P_DATA ERROR: ");
+		exit(1);
+	}
+	p_data->infile = h_infile_create();
+	p_data->outfile = h_outfile_open(input[input_cnt - 1]);
+	p_data->cmd_cnt = input_cnt - 4;
+	p_data->cmd = &(input[3]);
+	p_data->environ = environ;
+	return (p_data);
 }
 
 static int	h_infile_create(void)
@@ -68,4 +76,18 @@ static int	h_outfile_open(char *outfile_path)
 		exit(1);
 	}
 	return (fd);
+}
+
+static void	h_delet_infile(int infile_fd)
+{
+	if (close(infile_fd) == -1)
+	{
+		perror("h_delet_infile close error: ");
+		exit(1);
+	}
+	if (unlink("/tmp/.heredoc") == -1)
+	{
+		perror("h_delet_infile ulink error: ");
+		exit(1);
+	}
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   multi_pipe.c                                       :+:      :+:    :+:   */
+/*   multi_pipe_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rhong <rhong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 16:44:12 by rhong             #+#    #+#             */
-/*   Updated: 2022/09/21 16:46:26 by rhong            ###   ########.fr       */
+/*   Updated: 2022/09/26 17:51:57 by rhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void				multi_pipe(int input_cnt, char **input, char **environ);
 static t_pipe_data	*m_pipe_data_set(int input_cnt, char **input, char **environ);
 static int			m_infile_open(char *infile_path);
 static int			m_outfile_open(char *outfile_path);
+void				free_all(t_pipe_data *p_data);
 
 void	multi_pipe(int input_cnt, char **input, char **environ)
 {
@@ -68,4 +69,9 @@ static int	m_outfile_open(char *outfile_path)
 		exit(1);
 	}
 	return (fd);
+}
+
+void	free_all(t_pipe_data *p_data)
+{
+	free(p_data);
 }
