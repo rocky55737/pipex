@@ -6,7 +6,7 @@
 /*   By: rhong <rhong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 17:07:05 by rhong             #+#    #+#             */
-/*   Updated: 2022/09/17 21:34:08 by rhong            ###   ########.fr       */
+/*   Updated: 2022/09/26 18:43:29 by rhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,5 @@ void	pipex_bonus(int input_cnt, char **input, char **environ)
 		multi_pipe(input_cnt, input, environ);
 	else
 		perror("INPUT ERROR");
-	return (0);
+	return ;
 }
