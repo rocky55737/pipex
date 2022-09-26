@@ -6,7 +6,7 @@
 /*   By: rhong <rhong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 13:44:25 by rhong             #+#    #+#             */
-/*   Updated: 2022/09/26 17:38:52 by rhong            ###   ########.fr       */
+/*   Updated: 2022/09/26 18:31:07 by rhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ char	*ft_strchr(const char *s, int c);
 int		ft_strcmp(char *s1, char *s2);
 char	*ft_strdup(const char *src);
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
-char	*ft_strjoin(char const *s1, char const *s2);
 size_t	ft_strlcat(char *dest, char *src, size_t size);
 size_t	ft_strlcpy(char *dest, char *src, size_t size);
 size_t	ft_strlen(const char *s);

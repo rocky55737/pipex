@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   child.c                                            :+:      :+:    :+:   */
+/*   child_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rhong <rhong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 16:42:03 by rhong             #+#    #+#             */
-/*   Updated: 2022/09/21 19:45:33 by rhong            ###   ########.fr       */
+/*   Updated: 2022/09/26 18:40:41 by rhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void			child(t_child_data	c_data);
 t_child_data	child_data_set(int *pids, int pipe_cnt, t_pipe_data *p_data, \
 int pipes[2][2]);
-static char 	*cmd_path_find(char *cmd, char **environ);
-static void	io_dup(int *in_out_fd);
+static char		*cmd_path_find(char *cmd, char **environ);
+static void		io_dup(int *in_out_fd);
 
 void	child(t_child_data	c_data)
 {
@@ -56,7 +56,7 @@ int pipes[2][2])
 	return (c_data);
 }
 
-static char *cmd_path_find(char *cmd, char **environ)
+static char	*cmd_path_find(char *cmd, char **environ)
 {
 	char	**paths_env;
 	int		cnt;
@@ -67,9 +67,12 @@ static char *cmd_path_find(char *cmd, char **environ)
 		environ++;
 	paths_env = ft_split(&((*environ)[5]), ':');
 	cnt = 0;
-	while(paths_env[cnt])
+	while (paths_env[cnt])
+	{
 		paths_env[cnt] = ft_strjoin(paths_env[cnt], "/");
-	while (*paths_env | access(ft_strjoin(*paths_env, cmd), X_OK) != 0)
+		cnt++;
+	}
+	while (*paths_env || access(ft_strjoin(*paths_env, cmd), X_OK) != 0)
 		paths_env++;
 	if (paths_env == 0)
 	{
