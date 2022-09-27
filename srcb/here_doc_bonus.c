@@ -6,7 +6,7 @@
 /*   By: rhong <rhong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 16:40:45 by rhong             #+#    #+#             */
-/*   Updated: 2022/09/26 17:50:13 by rhong            ###   ########.fr       */
+/*   Updated: 2022/09/27 14:57:53 by rhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static int	h_infile_create(void)
 {
 	int	fd;
 
-	fd = open("/tmp/.heredoc", O_CREAT | O_RDWR);
+	fd = open("/tmp/.heredoc", O_CREAT | O_RDWR, 644);
 	if (fd == 0)
 	{
 		perror("h_infile_create error: ");
@@ -69,7 +69,7 @@ static int	h_outfile_open(char *outfile_path)
 {
 	int	fd;
 
-	fd = open(outfile_path, O_CREAT | O_APPEND | O_WRONLY);
+	fd = open(outfile_path, O_CREAT | O_APPEND | O_WRONLY, 644);
 	if (fd == 0)
 	{
 		perror("h_outfile_open error: ");

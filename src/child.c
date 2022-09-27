@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   child_bonus.c                                      :+:      :+:    :+:   */
+/*   child.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rhong <rhong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 16:42:03 by rhong             #+#    #+#             */
-/*   Updated: 2022/09/26 18:40:41 by rhong            ###   ########.fr       */
+/*   Updated: 2022/09/27 14:28:53 by rhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex_bonus.h"
+#include "pipex.h"
 
 void			child(t_child_data	c_data);
 t_child_data	child_data_set(int *pids, int pipe_cnt, t_pipe_data *p_data, \
