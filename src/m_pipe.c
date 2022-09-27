@@ -6,7 +6,7 @@
 /*   By: rhong <rhong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 16:42:44 by rhong             #+#    #+#             */
-/*   Updated: 2022/09/27 14:18:09 by rhong            ###   ########.fr       */
+/*   Updated: 2022/09/27 17:55:25 by rhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,15 @@ void	m_pipe(t_pipe_data *p_data)
 {
 	int		pipe_cnt;
 	int		pipes[2][2];
+	int		cnt;
 	pid_t	*pids;
 
 	pipe_cnt = 0;
 	pids = (pid_t *)malloc(sizeof(pid_t) * p_data->cmd_cnt);
+	cnt = 0;
 	while (pipe_cnt < p_data->cmd_cnt)
 	{
+		fd_arr_close(pipes[pipe_cnt % 2]);
 		pipe_open(pipes[pipe_cnt % 2]);
 		pids[pipe_cnt] = fork();
 		if (pids[pipe_cnt] < 0)
@@ -35,7 +38,6 @@ void	m_pipe(t_pipe_data *p_data)
 			exit(1);
 		}
 		child(child_data_set(pids, pipe_cnt, p_data, pipes));
-		fd_arr_close(pipes[pipe_cnt % 2]);
 		pipe_cnt++;
 	}
 	wait_pids(pids, p_data->cmd_cnt);
@@ -54,7 +56,7 @@ void	fd_arr_close(int fd_arr[2])
 {
 	if (fd_arr[0] != 0)
 	{
-		if (close(fd_arr[0]) < -1)
+		if (close(fd_arr[1]) < -1)
 		{
 			perror("pipe close error: ");
 			exit(-1);

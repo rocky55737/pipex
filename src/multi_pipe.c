@@ -6,7 +6,7 @@
 /*   By: rhong <rhong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 14:17:34 by rhong             #+#    #+#             */
-/*   Updated: 2022/09/27 15:07:04 by rhong            ###   ########.fr       */
+/*   Updated: 2022/09/27 17:37:20 by rhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char **environ)
 	}
 	p_data->infile = m_infile_open(input[1]);
 	p_data->outfile = m_outfile_open(input[input_cnt - 1]);
-	p_data->cmd_cnt = input_cnt - 3;
+	p_data->cmd_cnt = 2;
 	p_data->cmd = &(input[2]);
 	p_data->environ = environ;
 	return (p_data);
@@ -51,7 +51,7 @@ static int	m_infile_open(char *infile_path)
 {
 	int	fd;
 
-	fd = open(infile_path, O_RDONLY, 644);
+	fd = open(infile_path, O_RDONLY, 0644);
 	if (fd == 0)
 	{
 		perror("m_infile_open error: ");
@@ -64,7 +64,7 @@ static int	m_outfile_open(char *outfile_path)
 {
 	int	fd;
 
-	fd = open(outfile_path, O_CREAT | O_TRUNC | O_WRONLY, 644);
+	fd = open(outfile_path, O_CREAT | O_TRUNC | O_WRONLY, 0644);
 	if (fd == 0)
 	{
 		perror("m_outfile_open error: ");

@@ -6,7 +6,7 @@
 /*   By: rhong <rhong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 17:08:49 by rhong             #+#    #+#             */
-/*   Updated: 2022/09/27 14:56:29 by rhong            ###   ########.fr       */
+/*   Updated: 2022/09/27 17:55:13 by rhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void			m_pipe(t_pipe_data *p_data);
 void			fd_arr_close(int fd_arr[2]);
 void			free_all(t_pipe_data *p_data);
 
-void			child(t_child_data c_data);
+void			child(t_child_data	c_data);
 t_child_data	child_data_set(int *pids, int pipe_cnt, t_pipe_data *p_data, \
 int pipes[2][2]);
 
