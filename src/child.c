@@ -6,7 +6,7 @@
 /*   By: rhong <rhong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 16:42:03 by rhong             #+#    #+#             */
-/*   Updated: 2022/09/27 17:54:56 by rhong            ###   ########.fr       */
+/*   Updated: 2022/09/27 19:32:00 by rhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	child(t_child_data	c_data)
 		return ;
 	command = ft_split(c_data.p_d->cmd[c_data.pipe_cnt], ' ');
 	cmd_path = cmd_path_find(command[0], c_data.p_d->environ);
+	printf("cdata.fd_in_out[0], [1] : %d, %d\n", c_data.fd_in_out[0], c_data.fd_in_out[1]);
 	io_dup(c_data.fd_in_out);
 	fd_arr_close(c_data.fd_to_close);
 	if (execve(cmd_path, command, c_data.p_d->environ) == -1)

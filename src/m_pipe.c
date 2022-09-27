@@ -6,7 +6,7 @@
 /*   By: rhong <rhong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 16:42:44 by rhong             #+#    #+#             */
-/*   Updated: 2022/09/27 17:55:25 by rhong            ###   ########.fr       */
+/*   Updated: 2022/09/27 19:38:56 by rhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,10 @@ void	m_pipe(t_pipe_data *p_data)
 
 	pipe_cnt = 0;
 	pids = (pid_t *)malloc(sizeof(pid_t) * p_data->cmd_cnt);
-	cnt = 0;
 	while (pipe_cnt < p_data->cmd_cnt)
 	{
-		fd_arr_close(pipes[pipe_cnt % 2]);
-		pipe_open(pipes[pipe_cnt % 2]);
+		if (pipe_cnt < p_data->cmd_cnt - 1)
+			pipe_open(pipes[pipe_cnt % 2]);
 		pids[pipe_cnt] = fork();
 		if (pids[pipe_cnt] < 0)
 		{

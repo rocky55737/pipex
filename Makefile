@@ -6,7 +6,7 @@
 #    By: rhong <rhong@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/27 14:13:50 by rhong             #+#    #+#              #
-#    Updated: 2022/09/27 14:30:37 by rhong            ###   ########.fr        #
+#    Updated: 2022/09/27 19:03:43 by rhong            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,5 +55,8 @@ re :
 
 bonus :
 	make WITH_BONUS=1
+
+debug :
+	$(CC) -g3 ./src/*.c $(LFLAG) $(LIB)
 
 .PHONY: all clean fclean re bonus
