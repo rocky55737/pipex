@@ -6,7 +6,7 @@
 /*   By: rhong <rhong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 14:17:34 by rhong             #+#    #+#             */
-/*   Updated: 2022/09/27 17:37:20 by rhong            ###   ########.fr       */
+/*   Updated: 2022/09/27 18:19:50 by rhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,8 @@ static int	m_infile_open(char *infile_path)
 	int	fd;
 
 	fd = open(infile_path, O_RDONLY, 0644);
-	if (fd == 0)
-	{
+	if (fd == -1)
 		perror("m_infile_open error: ");
-		exit(1);
-	}
 	return (fd);
 }
 
@@ -65,7 +62,7 @@ static int	m_outfile_open(char *outfile_path)
 	int	fd;
 
 	fd = open(outfile_path, O_CREAT | O_TRUNC | O_WRONLY, 0644);
-	if (fd == 0)
+	if (fd == -1)
 	{
 		perror("m_outfile_open error: ");
 		exit(1);
