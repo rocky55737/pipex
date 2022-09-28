@@ -60,13 +60,16 @@ static size_t	my_str_c_len(char const *str, char c)
 
 static int	check_alloc(char **s, size_t index)
 {
-	if (!s[index])
+	int	cnt;
+
+	cnt = (int)index;
+	if (!s[cnt])
 	{
-		while (index > -1)
+		while (cnt > -1)
 		{
-			free(s[index]);
-			s[index] = 0;
-			index--;
+			free(s[cnt]);
+			s[cnt] = 0;
+			cnt--;
 		}
 		s = 0;
 		return (0);
