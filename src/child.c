@@ -46,5 +46,45 @@ int	has_two_quotes(char *str)
 
 char	*rm_quotes(char *str)
 {
-	
+	char	*ret;
+	int		first_q;
+	int		last_q;
+	char	which_q;
+	int		index;
+
+	index = 0;
+	while (str[index] != '\'' || str[index] != '\"')
+		index++;
+	which_q = str[index];
+	first_q = index;
+	while (str[index])
+		index++;
+	while (str[index] != which_q)
+		index--;
+	last_q = index;
+	return (strdup_not_quotes(first_q, last_q, str));
+}
+
+char	*strdup_not_quotes(int f_index, int l_index, char *str)
+{
+	int		src_len;
+	char	*duped_str;
+
+	src_len = 0;
+	while (src[src_len])
+		src_len++;
+	duped_str = (char *)malloc(sizeof(char) * (src_len + 1) - 2);
+	if (duped_str == 0)
+		return (0);
+	src_len = 0;
+	while (src[src_len])
+	{
+		if (src_len != f_index && src_len != l_index)
+		{
+			duped_str[src_len] = src[src_len];
+			src_len++;
+		}
+	}
+	duped_str[src_len] = 0;
+	return (duped_str);
 }
