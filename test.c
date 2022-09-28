@@ -21,14 +21,13 @@ int main(int ac, char **av, char **env)
     cmds = &(av[2]);
     
     in_out_fd[0] = open(av[1], O_RDONLY, 0644);
-    in_out_fd[1] = open(av[4], O_RDWR | O_CREAT, 0666);
+    in_out_fd[1] = open(av[4], O_TRUNC | O_RDWR | O_CREAT, 0666);
     pipe(pipe_fd);
 
     fork_cnt = 0;
     while (fork_cnt < 2)
     {
         pids[fork_cnt] = fork();
-        printf("%d\n", pids[fork_cnt]);
         if (pids[fork_cnt] == 0)
         {
             cmd = ft_split(cmds[fork_cnt], ' ');
@@ -59,7 +58,6 @@ int main(int ac, char **av, char **env)
                 all_paths_cnt++;
 
             cmd_path = all_paths[all_paths_cnt];
-            perror(cmd_path);
 
             if (fork_cnt == 0)
             {
