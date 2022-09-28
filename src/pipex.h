@@ -24,9 +24,11 @@
 
 typedef struct s_p_data{
 	int		in_out_fd[2];
+	int		pipes_fd[2];
 	char	**cmds;
 	int		cmd_cnt;
 	char	**env;
+	pid_t	*pids;
 }	t_p_data;
 
 void	pipex(int ac, char **av, char **env);

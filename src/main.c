@@ -12,22 +12,20 @@ void	pipex(int ac, char **av, char **env)
 {
 	t_p_data	*p_data;
 	int			fork_cnt;
-	int			pipe_fd[2];
-	pid_t		*pids;
 
 	if (input_err(ac))
 		return ;
 	p_data = set_p_data(ac, av, env);
+	pipe(p_data->pipes_fd);
 	fork_cnt = 0;
-	pids = (pid_t *)malloc(sizeof(pid_t) * p_data->cmd_cnt);
 	while (fork_cnt < p_data->cmd_cnt)
 	{
-		pids[fork_cnt] = fork();
-		if (pids[fork_cnt] == 0)
-			child(p_data);
+		p_data->pids[fork_cnt] = fork();
+		if (p_data->pids[fork_cnt] == 0)
+			child(p_data, fork_cnt);
 		fork_cnt++;
 	}
-	close_pipes(pipe_fd);
+	close_pipes(p_data->pipes_fd);
 	fork_cnt = 0;
 	while (fork_cnt < p_data->cmd_cnt)
 	{
@@ -35,3 +33,4 @@ void	pipex(int ac, char **av, char **env)
 		fork_cnt++;
 	}
 }
+

@@ -18,6 +18,12 @@ t_p_data	set_p_data(int ac, char **av, char **env)
 	p_data->cmds = av[2];
 	p_data->cmd_cnt = ac - 3;
 	p_data->env = env;
+	p_data->pids = (pid_t *)malloc(sizeof(pid_t) * p_data->cmd_cnt);
+	if (p_data->pids == 0)
+	{
+		perror("SET P_DATA PIDS MALLOC ERR:");
+		exit(1);
+	}
 }
 
 int	infile_open(char *infile_path)
