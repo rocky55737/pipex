@@ -32,6 +32,15 @@ typedef struct s_p_data{
 }	t_p_data;
 
 void	pipex(int ac, char **av, char **env);
+void	close_pipes(int fd_arr[2]);
+
 int 	input_err(int ac);
+
+void	child(t_p_data *p_data, int fork_cnt);
+
+char 	**set_cmd(char *cmd_to_set);
+
+char	**rm_quotes(char *str);
+
 
 #endif

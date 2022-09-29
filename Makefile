@@ -14,7 +14,7 @@ CC = cc
 NAME = pipex
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS = ./src/child.c ./src/input_err_check.c ./src/m_pipe.c ./src/multi_pipe.c ./src/pipex.c
+SRCS = ./src/main.c ./src/input_err.c ./src/set_p_data.c ./src/child.c ./src/set_cmd.c
 SRCS_B = ./srcb/child_bonus.c ./srcb/here_doc_bonus.c ./srcb/input_err_check_bonus.c ./srcb/m_pipe_bonus.c ./srcb/multi_pipe_bonus.c ./srcb/pipex_bonus.c
 
 HEADER = ./src/pipex.h

@@ -1,6 +1,7 @@
 #include "pipex.h"
 
 void	pipex(int ac, char **av, char **env);
+void	close_pipes(int fd_arr[2]);
 
 int	main(int ac, char **av, char **env)
 {
@@ -34,3 +35,12 @@ void	pipex(int ac, char **av, char **env)
 	}
 }
 
+void	close_pipes(int fd_arr[2])
+{
+	if (fd_arr[0] != 0)
+		close(fd_arr[0]) < -1;
+	fd_arr[0] = 0;
+	if (fd_arr[1] != 0)
+		close(fd_arr[1]) < -1;
+	fd_arr[1] = 0;
+}

@@ -1,5 +1,8 @@
 #include "pipex.h"
 
+void	child(t_p_data *p_data, int fork_cnt);
+static void	dups(t_p_data *p_data, int fork_cnt);
+
 void	child(t_p_data *p_data, int fork_cnt)
 {
 	char	**cmd;
@@ -12,39 +15,16 @@ void	child(t_p_data *p_data, int fork_cnt)
 	execve(cmd_path, cmd, env);
 }
 
-char **set_cmd(char *cmd_to_set)
+static void	dups(t_p_data *p_data, int fork_cnt)
 {
-	char **cmd;
-
-	if (has_two_quotes(cmd_to_set))
-		cmd = split_first_sp(rm_quotes(cmd_to_set));
+	if (fork_cnt == 0)
+	{
+		dup2(p_data->in_out_fd[0], 0);
+		dup2(p_data->pipes_fd[1], 1);
+	}
 	else
-		cmd = ft_split(cmd_to_set, ' ');
-	return (cmd);
-}
-
-int	has_two_quotes(char *str)
-{
-	char	*tmp;
-
-	tmp = ft_strchr(str, '\'');
-	if (tmp)
 	{
-		tmp = ft_strchr(tmp + 1, '\'');
-		if (tmp)
-			return (1);
+		dup2(p_data->pipes_fd[0], 0);
+		dup2(p_data->in_out_fd[1], 1);
 	}
-	tmp = ft_strchr(str, '\"');
-	if (tmp)
-	{
-		tmp = ft_strchr(tmp + 1, '\"');
-		if (tmp)
-			return (1);
-	}
-	return (0);
-}
-
-char	*rm_quotes(char *str)
-{
-	
 }

@@ -1,8 +1,8 @@
 #include "pipex.h"
 
 t_p_data	set_p_data(int ac, char **av, char **env);
-int			infile_open(char *infile_path);
-int			outfile_open(char *outfile_path);
+static int	infile_open(char *infile_path);
+static int	outfile_open(char *outfile_path);
 
 t_p_data	set_p_data(int ac, char **av, char **env)
 {
@@ -26,7 +26,7 @@ t_p_data	set_p_data(int ac, char **av, char **env)
 	}
 }
 
-int	infile_open(char *infile_path)
+static int	infile_open(char *infile_path)
 {
 	int	fd;
 
@@ -34,7 +34,7 @@ int	infile_open(char *infile_path)
 	return (fd);
 }
 
-int	outfile_open(char *outfile_path)
+static int	outfile_open(char *outfile_path)
 {
 	int	fd;
 
