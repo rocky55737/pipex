@@ -8,11 +8,11 @@ void	child(t_p_data *p_data, int fork_cnt)
 	char	**cmd;
 	char	*cmd_path;
 
-	cmd = set_cmd(cmds[fork_cnt];
+	cmd = set_cmd(p_data->cmds[fork_cnt]);
 	cmd_path = find_cmd_path(p_data, cmd[0]);
 	dups(p_data, fork_cnt);
 	close_pipes(p_data->pipes_fd);
-	execve(cmd_path, cmd, env);
+	execve(cmd_path, cmd, p_data->env);
 }
 
 static void	dups(t_p_data *p_data, int fork_cnt)

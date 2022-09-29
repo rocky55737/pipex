@@ -30,7 +30,7 @@ void	pipex(int ac, char **av, char **env)
 	fork_cnt = 0;
 	while (fork_cnt < p_data->cmd_cnt)
 	{
-		waitpid(pids[fork_cnt], 0, 0);
+		waitpid(p_data->pids[fork_cnt], 0, 0);
 		fork_cnt++;
 	}
 }
@@ -38,9 +38,9 @@ void	pipex(int ac, char **av, char **env)
 void	close_pipes(int fd_arr[2])
 {
 	if (fd_arr[0] != 0)
-		close(fd_arr[0]) < -1;
+		close(fd_arr[0]);
 	fd_arr[0] = 0;
 	if (fd_arr[1] != 0)
-		close(fd_arr[1]) < -1;
+		close(fd_arr[1]);
 	fd_arr[1] = 0;
 }
