@@ -39,6 +39,6 @@ static int	outfile_open(char *outfile_path)
 {
 	int	fd;
 
-	fd = open(outfile_path, O_TRUNC | O_RDWR | O_CREAT, 0666);
+	fd = open(outfile_path, O_TRUNC | O_WRONLY | O_CREAT, 0666);
 	return (fd);
 }
