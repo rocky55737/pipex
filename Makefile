@@ -6,7 +6,7 @@
 #    By: rhong <rhong@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/27 14:13:50 by rhong             #+#    #+#              #
-#    Updated: 2022/09/30 15:05:58 by rhong            ###   ########.fr        #
+#    Updated: 2022/09/30 16:23:16 by rhong            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = pipex
 CFLAGS = -Wall -Wextra -Werror
 
 SRCS = ./src/child.c ./src/find_cmd_path.c ./src/input_err.c ./src/main.c ./src/pipex.c ./src/rm_quotes.c ./src/set_cmd.c ./src/set_p_data.c
-SRCS_B = ./srcb/child_bonus.c ./srcb/here_doc_bonus.c ./srcb/input_err_check_bonus.c ./srcb/m_pipe_bonus.c ./srcb/multi_pipe_bonus.c ./srcb/pipex_bonus.c
+SRCS_B = ./srcb/child_bonus.c ./srcb/find_cmd_path_bonus.c ./srcb/h_set_p_data_bonus.c ./srcb/here_doc_bonus.c ./srcb/input_err_bonus.c ./srcb/main_bonus.c ./srcb/pipex_bonus.c ./srcb/rm_quotes_bonus.c ./srcb/set_cmd_bonus.c ./srcb/set_p_data_bonus.c
 
 HEADER = ./src/pipex.h
 HEADER_B = ./srcb/pipex_bonus.h
@@ -47,7 +47,7 @@ clean :
 	rm -rf $(TOTAL_OBJS); make clean -C ./libft; make clean -C ./get_next_line
 
 fclean : clean
-	rm -rf $(NAME); make fclean -C ./libft; make fclean -C ./get_next_line
+	rm -rf $(NAME) $(OBJS_B); make fclean -C ./libft; make fclean -C ./get_next_line
 
 re :
 	make fclean

@@ -6,7 +6,7 @@
 /*   By: rhong <rhong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 15:56:18 by rhong             #+#    #+#             */
-/*   Updated: 2022/09/30 15:56:21 by rhong            ###   ########.fr       */
+/*   Updated: 2022/09/30 16:20:45 by rhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,17 @@ void	here_doc(int ac, char **av, char **env)
 	int			fork_cnt;
 
 	p_data = h_set_p_data(ac, av, env);
+	clean_pipes(p_data->pipes_fd);
 	fork_cnt = 0;
 	while (fork_cnt < p_data->cmd_cnt)
 	{
+		if (fork_cnt < p_data->cmd_cnt - 1)
+			close_pipes(p_data->pipes_fd[fork_cnt % 2]);
 		if (fork_cnt < p_data->cmd_cnt - 1)
 			pipe(p_data->pipes_fd[fork_cnt % 2]);
 		p_data->pids[fork_cnt] = fork();
 		if (p_data->pids[fork_cnt] == 0)
 			child(p_data, fork_cnt);
-		if (fork_cnt < p_data->cmd_cnt - 1)
-			close_pipes(p_data->pipes_fd[fork_cnt % 2]);
 		fork_cnt++;
 	}
 	fork_cnt = 0;
