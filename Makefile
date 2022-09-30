@@ -6,7 +6,7 @@
 #    By: rhong <rhong@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/27 14:13:50 by rhong             #+#    #+#              #
-#    Updated: 2022/09/27 19:03:43 by rhong            ###   ########.fr        #
+#    Updated: 2022/09/30 15:05:58 by rhong            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ CC = cc
 NAME = pipex
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS = ./src/main.c ./src/input_err.c ./src/set_p_data.c ./src/child.c ./src/set_cmd.c ./src/find_cmd_path.c ./src/rm_quotes.c
+SRCS = ./src/child.c ./src/find_cmd_path.c ./src/input_err.c ./src/main.c ./src/pipex.c ./src/rm_quotes.c ./src/set_cmd.c ./src/set_p_data.c
 SRCS_B = ./srcb/child_bonus.c ./srcb/here_doc_bonus.c ./srcb/input_err_check_bonus.c ./srcb/m_pipe_bonus.c ./srcb/multi_pipe_bonus.c ./srcb/pipex_bonus.c
 
 HEADER = ./src/pipex.h
@@ -55,8 +55,5 @@ re :
 
 bonus :
 	make WITH_BONUS=1
-
-debug :
-	$(CC) -g3 ./src/*.c $(LFLAG) $(LIB)
 
 .PHONY: all clean fclean re bonus

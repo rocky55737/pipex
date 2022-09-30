@@ -6,7 +6,7 @@
 /*   By: rhong <rhong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 14:39:18 by rhong             #+#    #+#             */
-/*   Updated: 2022/09/30 14:39:21 by rhong            ###   ########.fr       */
+/*   Updated: 2022/09/30 15:21:42 by rhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,6 @@ static int	outfile_open(char *outfile_path)
 {
 	int	fd;
 
-	fd = open(outfile_path, O_TRUNC | O_WRONLY | O_CREAT, 0666);
+	fd = open(outfile_path, O_TRUNC | O_WRONLY | O_CREAT, 0644);
 	return (fd);
 }
