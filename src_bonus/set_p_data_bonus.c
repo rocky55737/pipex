@@ -1,4 +1,4 @@
-#include "pipex.h"
+#include "pipex_bonus.h"
 
 t_p_data	*set_p_data(int ac, char **av, char **env);
 static int	infile_open(char *infile_path);
@@ -7,12 +7,13 @@ static int	outfile_open(char *outfile_path);
 t_p_data	*set_p_data(int ac, char **av, char **env)
 {
 	t_p_data	*p_data;
+
 	p_data = (t_p_data *)malloc(sizeof(t_p_data));
 	if (p_data == 0)
 	{
 		perror("P_DATA ERR: ");
 		exit(1);
-    }
+	}
 	p_data->in_out_fd[0] = infile_open(av[1]);
 	p_data->in_out_fd[1] = outfile_open(av[4]);
 	p_data->cmds = &(av[2]);
@@ -39,6 +40,6 @@ static int	outfile_open(char *outfile_path)
 {
 	int	fd;
 
-	fd = open(outfile_path, O_TRUNC | O_WRONLY | O_CREAT, 0666);
+	fd = open(outfile_path, O_TRUNC | O_WRONLY | O_CREAT, 0644);
 	return (fd);
 }

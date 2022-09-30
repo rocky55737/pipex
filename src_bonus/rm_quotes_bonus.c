@@ -1,4 +1,4 @@
-#include "pipex.h"
+#include "pipex_bonus.h"
 
 char		**rm_quotes(char *str);
 static int	find_quotes_from_start(char *str);

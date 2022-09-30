@@ -24,5 +24,5 @@ void	here_doc(int ac, char **av, char **env)
 		waitpid(p_data->pids[fork_cnt], 0, 0);
 		fork_cnt++;
 	}
-    unlink("/tmp/.here_doc.txt");
+	unlink("/tmp/.here_doc.txt");
 }

@@ -1,15 +1,9 @@
-#include "pipex.h"
+#include "pipex_bonus.h"
 
-void	pipex(int ac, char **av, char **env);
+void	pipex_bonus(int ac, char **av, char **env);
 void	close_pipes(int fd_arr[2]);
 
-int	main(int ac, char **av, char **env)
-{
-	pipex(ac, av, env);
-	return (0);
-}
-
-void	pipex(int ac, char **av, char **env)
+void	pipex_bonus(int ac, char **av, char **env)
 {
 	t_p_data	*p_data;
 	int			fork_cnt;

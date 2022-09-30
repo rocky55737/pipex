@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   pipex_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rhong <rhong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 17:08:49 by rhong             #+#    #+#             */
-/*   Updated: 2022/09/27 17:55:13 by rhong            ###   ########.fr       */
+/*   Updated: 2022/09/30 15:39:36 by rhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_p_data{
 	pid_t	*pids;
 }	t_p_data;
 
-void		pipex(int ac, char **av, char **env);
+void		pipex_bonus(int ac, char **av, char **env);
 void		close_pipes(int fd_arr[2]);
 t_p_data	*set_p_data(int ac, char **av, char **env);
 int 		input_err(int ac);

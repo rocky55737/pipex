@@ -1,4 +1,4 @@
-#include "pipex.h"
+#include "pipex_bonus.h"
 
 char 		**set_cmd(char *cmd_to_set);
 static int	has_two_quotes(char *str);
