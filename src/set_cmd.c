@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   set_cmd.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rhong <rhong@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/30 14:38:07 by rhong             #+#    #+#             */
+/*   Updated: 2022/09/30 14:38:39 by rhong            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex.h"
 
-char 		**set_cmd(char *cmd_to_set);
+char		**set_cmd(char *cmd_to_set);
 static int	has_two_quotes(char *str);
 
-char **set_cmd(char *cmd_to_set)
+char	**set_cmd(char *cmd_to_set)
 {
-	char **cmd;
+	char	**cmd;
 
 	if (has_two_quotes(cmd_to_set))
 		cmd = rm_quotes(cmd_to_set);

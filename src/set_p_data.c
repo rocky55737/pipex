@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   set_p_data.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rhong <rhong@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/30 14:39:18 by rhong             #+#    #+#             */
+/*   Updated: 2022/09/30 14:39:21 by rhong            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex.h"
 
 t_p_data	*set_p_data(int ac, char **av, char **env);
@@ -7,12 +19,13 @@ static int	outfile_open(char *outfile_path);
 t_p_data	*set_p_data(int ac, char **av, char **env)
 {
 	t_p_data	*p_data;
+
 	p_data = (t_p_data *)malloc(sizeof(t_p_data));
 	if (p_data == 0)
 	{
 		perror("P_DATA ERR: ");
 		exit(1);
-    }
+	}
 	p_data->in_out_fd[0] = infile_open(av[1]);
 	p_data->in_out_fd[1] = outfile_open(av[4]);
 	p_data->cmds = &(av[2]);

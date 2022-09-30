@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   child.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rhong <rhong@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/30 14:36:19 by rhong             #+#    #+#             */
+/*   Updated: 2022/09/30 14:36:28 by rhong            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex.h"
 
-void	child(t_p_data *p_data, int fork_cnt);
+void		child(t_p_data *p_data, int fork_cnt);
 static void	dups(t_p_data *p_data, int fork_cnt);
 
 void	child(t_p_data *p_data, int fork_cnt)
