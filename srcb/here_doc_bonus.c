@@ -23,12 +23,16 @@ void	here_doc(int ac, char **av, char **env)
 	while (fork_cnt < p_data->cmd_cnt)
 	{
 		if (fork_cnt < p_data->cmd_cnt - 1)
-			close_pipes(p_data->pipes_fd[fork_cnt % 2]);
-		if (fork_cnt < p_data->cmd_cnt - 1)
 			pipe(p_data->pipes_fd[fork_cnt % 2]);
 		p_data->pids[fork_cnt] = fork();
 		if (p_data->pids[fork_cnt] == 0)
 			child(p_data, fork_cnt);
+		if (fork_cnt < p_data->cmd_cnt - 1)
+		{
+			close(p_data->pipes_fd[fork_cnt % 2][1]);
+			if (fork_cnt != 0)
+				close(p_data->pipes_fd[(fork_cnt + 1) % 2][0]);
+		}
 		fork_cnt++;
 	}
 	fork_cnt = 0;
