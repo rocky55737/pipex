@@ -13,7 +13,7 @@
 #include "pipex_bonus.h"
 
 t_p_data	*h_set_p_data(int ac, char **av, char **env);
-static int	h_infile_open(char *infile_path);
+static int	h_infile_open(char *infile_path, char *limiter);
 static int	h_outfile_open(char *outfile_path);
 
 t_p_data	*h_set_p_data(int ac, char **av, char **env)
@@ -26,7 +26,7 @@ t_p_data	*h_set_p_data(int ac, char **av, char **env)
 		perror("P_DATA ERR: ");
 		exit(1);
 	}
-	p_data->in_out_fd[0] = h_infile_open("/tmp/.here_doc.txt");
+	p_data->in_out_fd[0] = h_infile_open("/tmp/.here_doc.txt", av[2]);
 	p_data->in_out_fd[1] = h_outfile_open(av[4]);
 	p_data->cmds = &(av[2]);
 	p_data->cmd_cnt = ac - 4;
@@ -40,11 +40,20 @@ t_p_data	*h_set_p_data(int ac, char **av, char **env)
 	return (p_data);
 }
 
-static int	h_infile_open(char *infile_path)
+static int	h_infile_open(char *infile_path, char *limiter)
 {
-	int	fd;
+	int		fd;
+	char	*buffer;
 
 	fd = open(infile_path, O_CREAT | O_RDWR, 0644);
+	bufffer = get_next_line(fd);
+	while (ft_strcmp(limiter, buffer) != 0)
+	{
+		write(fd, buffer, ft_strlen(buffer));
+		free(buffer);
+		buffer = get_next_line(fd);
+	}
+	free(buffer);
 	return (fd);
 }
 
