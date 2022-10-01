@@ -22,11 +22,10 @@ int main(int ac, char **av, char **env)
     
     in_out_fd[0] = open(av[1], O_RDONLY, 0644);
     in_out_fd[1] = open(av[4], O_TRUNC | O_WRONLY | O_CREAT, 0644);
-    pipe(pipe_fd);
-
     fork_cnt = 0;
     while (fork_cnt < 2)
     {
+		pipe(pipe_fd[fork_cnt % 2]);
         pids[fork_cnt] = fork();
         if (pids[fork_cnt] == 0)
         {
@@ -84,10 +83,14 @@ int main(int ac, char **av, char **env)
 			}
             execve(cmd_path, cmd, env);
         }
+		if (fork_cnt != ac - 4)
+		{	
+			close(pipe_fd[fork_cnt % 2][1]);
+			if (fork_cnt != 0)
+    			close(pipe_fd[(fork_cnt + 1) % 2][0]);
+		}
         fork_cnt++;
     }
-    close(pipe_fd[0]);
-    close(pipe_fd[1]);
     for (int a=0; a<2; a++)
     {
         wait(0);
