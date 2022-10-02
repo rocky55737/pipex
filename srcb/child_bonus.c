@@ -6,7 +6,7 @@
 /*   By: rhong <rhong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 15:55:35 by rhong             #+#    #+#             */
-/*   Updated: 2022/10/02 16:07:54 by rhong            ###   ########.fr       */
+/*   Updated: 2022/10/02 17:58:57 by rhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	child(t_p_data *p_data, int fork_cnt)
 		close_pipes(p_data->pipes_fd[fork_cnt]);
 	if (fork_cnt > 0)
 		close_pipes(p_data->pipes_fd[(fork_cnt + 1) % 2]);
-	perror(cmd_path);
 	execve(cmd_path, cmd, p_data->env);
 }
 
