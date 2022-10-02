@@ -6,7 +6,7 @@
 /*   By: rhong <rhong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 15:55:59 by rhong             #+#    #+#             */
-/*   Updated: 2022/09/30 15:56:01 by rhong            ###   ########.fr       */
+/*   Updated: 2022/10/02 16:10:50 by rhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*find_cmd_path(t_p_data *p_data, char *cmd)
 	int		cnt;
 	char	**all_paths;
 
-	if (access(cmd, X_OK) != 0)
+	if (access(cmd, X_OK) == 0)
 		return (cmd);
 	cnt = 0;
 	while (ft_strncmp("PATH=", p_data->env[cnt], 5) != 0)
