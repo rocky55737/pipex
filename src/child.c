@@ -6,7 +6,7 @@
 /*   By: rhong <rhong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 14:36:19 by rhong             #+#    #+#             */
-/*   Updated: 2022/09/30 15:29:03 by rhong            ###   ########.fr       */
+/*   Updated: 2022/10/02 18:41:41 by rhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,11 @@ static void	dups(t_p_data *p_data, int fork_cnt)
 	}
 	else
 	{
+		if (p_data->in_out_fd[1] == -1)
+		{
+			perror("");
+			exit(0);
+		}
 		dup2(p_data->pipes_fd[0], 0);
 		dup2(p_data->in_out_fd[1], 1);
 	}

@@ -6,16 +6,16 @@
 /*   By: rhong <rhong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 15:56:52 by rhong             #+#    #+#             */
-/*   Updated: 2022/10/02 16:38:11 by rhong            ###   ########.fr       */
+/*   Updated: 2022/10/02 20:06:06 by rhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_bonus.h"
 
 void	pipex_bonus(int ac, char **av, char **env);
-void	multi_pipe(int ac, char **av, char **env);
+int		multi_pipe(int ac, char **av, char **env);
 void	close_pipes(int fd_arr[2]);
-void	wait_all(pid_t *pids, int pid_cnt);
+int		wait_all(pid_t *pids, int pid_cnt);
 
 void	pipex_bonus(int ac, char **av, char **env)
 {
@@ -23,14 +23,14 @@ void	pipex_bonus(int ac, char **av, char **env)
 
 	flag = input_err(ac, av);
 	if (flag == 0)
-		here_doc(ac, av, env);
+		exit(here_doc(ac, av, env));
 	else if (flag == 1)
-		multi_pipe(ac, av, env);
+		exit(multi_pipe(ac, av, env));
 	else
 		exit(1);
 }
 
-void	multi_pipe(int ac, char **av, char **env)
+int	multi_pipe(int ac, char **av, char **env)
 {
 	t_p_data	*p_data;
 	int			fork_cnt;
@@ -52,7 +52,7 @@ void	multi_pipe(int ac, char **av, char **env)
 		}
 		fork_cnt++;
 	}
-	wait_all(p_data->pids, p_data->cmd_cnt);
+	return (wait_all(p_data->pids, p_data->cmd_cnt));
 }
 
 void	close_pipes(int fd_arr[2])
@@ -65,14 +65,17 @@ void	close_pipes(int fd_arr[2])
 	fd_arr[1] = 0;
 }
 
-void	wait_all(pid_t *pids, int pid_cnt)
+int	wait_all(pid_t *pids, int pid_cnt)
 {
 	int	cnt;
+	int	stat;
 
 	cnt = 0;
 	while (cnt < pid_cnt)
 	{
-		waitpid(pids[cnt], 0, 0);
+		waitpid(pids[cnt], &stat, 0);
 		cnt++;
 	}
+	perror(ft_itoa(stat));
+	return (stat);
 }

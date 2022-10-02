@@ -6,13 +6,13 @@
 /*   By: rhong <rhong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 15:56:18 by rhong             #+#    #+#             */
-/*   Updated: 2022/10/02 16:21:33 by rhong            ###   ########.fr       */
+/*   Updated: 2022/10/02 20:07:15 by rhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_bonus.h"
 
-void	here_doc(int ac, char **av, char **env)
+int	here_doc(int ac, char **av, char **env)
 {
 	t_p_data	*p_data;
 	int			fork_cnt;
@@ -34,6 +34,6 @@ void	here_doc(int ac, char **av, char **env)
 		}
 		fork_cnt++;
 	}
-	wait_all(p_data->pids, p_data->cmd_cnt);
 	unlink("/tmp/.here_doc.txt");
+	return (wait_all(p_data->pids, p_data->cmd_cnt));
 }
