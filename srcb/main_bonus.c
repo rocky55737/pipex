@@ -6,7 +6,7 @@
 /*   By: rhong <rhong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 15:56:33 by rhong             #+#    #+#             */
-/*   Updated: 2022/09/30 15:56:35 by rhong            ###   ########.fr       */
+/*   Updated: 2022/10/02 16:28:04 by rhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,5 @@
 int	main(int ac, char **av, char **env)
 {
 	pipex_bonus(ac, av, env);
-	return (0);
+	exit(0);
 }

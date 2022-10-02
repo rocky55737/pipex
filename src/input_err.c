@@ -6,7 +6,7 @@
 /*   By: rhong <rhong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 14:37:08 by rhong             #+#    #+#             */
-/*   Updated: 2022/09/30 15:07:00 by rhong            ###   ########.fr       */
+/*   Updated: 2022/10/02 16:35:24 by rhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,6 @@
 int	input_err(int ac)
 {
 	if (ac != 5)
-	{
-		perror("no five argument");
 		return (1);
-	}
 	return (0);
 }

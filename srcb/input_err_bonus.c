@@ -6,7 +6,7 @@
 /*   By: rhong <rhong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 15:56:26 by rhong             #+#    #+#             */
-/*   Updated: 2022/09/30 15:56:28 by rhong            ###   ########.fr       */
+/*   Updated: 2022/10/02 16:35:08 by rhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,6 @@ int	input_err(int ac, char **av)
 	else if (ac >= 5)
 		return (1);
 	else
-	{
-		perror("wrong argument err");
 		return (2);
-	}
 	return (0);
 }

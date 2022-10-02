@@ -6,7 +6,7 @@
 /*   By: rhong <rhong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 15:56:52 by rhong             #+#    #+#             */
-/*   Updated: 2022/10/02 16:20:35 by rhong            ###   ########.fr       */
+/*   Updated: 2022/10/02 16:38:11 by rhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	pipex_bonus(int ac, char **av, char **env)
 	else if (flag == 1)
 		multi_pipe(ac, av, env);
 	else
-		return ;
+		exit(1);
 }
 
 void	multi_pipe(int ac, char **av, char **env)
@@ -65,7 +65,7 @@ void	close_pipes(int fd_arr[2])
 	fd_arr[1] = 0;
 }
 
-static void	wait_all(pid_t *pids, int pid_cnt)
+void	wait_all(pid_t *pids, int pid_cnt)
 {
 	int	cnt;
 

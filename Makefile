@@ -6,7 +6,7 @@
 #    By: rhong <rhong@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/27 14:13:50 by rhong             #+#    #+#              #
-#    Updated: 2022/09/30 16:23:16 by rhong            ###   ########.fr        #
+#    Updated: 2022/10/02 16:53:06 by rhong            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ $(LIB):
 	make bonus -j -C ./libft; make bonus -j -C ./get_next_line
 
 clean :
-	rm -rf $(TOTAL_OBJS); make clean -C ./libft; make clean -C ./get_next_line
+	rm -rf $(OBJS) $(OBJS_B); make clean -C ./libft; make clean -C ./get_next_line
 
 fclean : clean
 	rm -rf $(NAME) $(OBJS_B); make fclean -C ./libft; make fclean -C ./get_next_line

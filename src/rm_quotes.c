@@ -6,7 +6,7 @@
 /*   By: rhong <rhong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 14:37:56 by rhong             #+#    #+#             */
-/*   Updated: 2022/09/30 14:37:59 by rhong            ###   ########.fr       */
+/*   Updated: 2022/10/02 17:51:40 by rhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,12 @@ char	**rm_quotes(char *str)
 		perror("rm_quotes malloc error:");
 		exit(1);
 	}
-	ret[0] = ft_substr(str, 0, first_q);
+	ret[0] = ft_substr(str, 0, first_q - 1);
 	ret[1] = ft_substr(str, first_q + 1, last_q - first_q - 1);
-	ret[2] = ft_substr(str, last_q + 1, ft_strlen(str) - last_q);
+	if (ft_strlen(str) - last_q != 1)
+		ret[2] = ft_substr(str, last_q + 2, ft_strlen(str) - last_q);
+	else
+		ret[2] = 0;
 	ret[3] = 0;
 	return (ret);
 }

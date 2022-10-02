@@ -6,7 +6,7 @@
 /*   By: rhong <rhong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 15:04:23 by rhong             #+#    #+#             */
-/*   Updated: 2022/09/30 15:05:27 by rhong            ###   ########.fr       */
+/*   Updated: 2022/10/02 16:38:34 by rhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	pipex(int ac, char **av, char **env)
 	int			fork_cnt;
 
 	if (input_err(ac))
-		return ;
+		exit(1);
 	p_data = set_p_data(ac, av, env);
 	pipe(p_data->pipes_fd);
 	fork_cnt = 0;
