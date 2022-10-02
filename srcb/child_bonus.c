@@ -6,7 +6,7 @@
 /*   By: rhong <rhong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 15:55:35 by rhong             #+#    #+#             */
-/*   Updated: 2022/10/02 23:31:24 by rhong            ###   ########.fr       */
+/*   Updated: 2022/10/03 02:43:47 by rhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void	child(t_p_data *p_data, int fork_cnt)
 		close_pipes(p_data->pipes_fd[fork_cnt]);
 	if (fork_cnt > 0)
 		close_pipes(p_data->pipes_fd[(fork_cnt + 1) % 2]);
+	if (!p_data->env)
+		execve(cmd_path, cmd, 0);
 	execve(cmd_path, cmd, p_data->env);
 }
 
@@ -45,7 +47,10 @@ static void	dups(t_p_data *p_data, int fork_cnt)
 	else if (fork_cnt == p_data->cmd_cnt - 1)
 	{
 		if (p_data->in_out_fd[1] == -1)
-			exit(0);
+		{
+			perror("pipex: output");
+			exit(1);
+		}
 		dup2(p_data->pipes_fd[(fork_cnt + 1) % 2][0], 0);
 		dup2(p_data->in_out_fd[1], 1);
 	}
