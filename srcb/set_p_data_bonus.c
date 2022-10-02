@@ -6,7 +6,7 @@
 /*   By: rhong <rhong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 15:58:52 by rhong             #+#    #+#             */
-/*   Updated: 2022/09/30 15:58:53 by rhong            ###   ########.fr       */
+/*   Updated: 2022/10/02 15:33:07 by rhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_p_data	*set_p_data(int ac, char **av, char **env)
 		exit(1);
 	}
 	p_data->in_out_fd[0] = infile_open(av[1]);
-	p_data->in_out_fd[1] = outfile_open(av[4]);
+	p_data->in_out_fd[1] = outfile_open(av[ac - 1]);
 	p_data->cmds = &(av[2]);
 	p_data->cmd_cnt = ac - 3;
 	p_data->env = env;

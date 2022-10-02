@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhong <rhong@student.42Seoul.kr>           +#+  +:+       +#+        */
+/*   By: rhong <rhong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 14:24:39 by rhong             #+#    #+#             */
-/*   Updated: 2022/06/29 17:49:15 by rhong            ###   ########.fr       */
+/*   Updated: 2022/10/02 15:21:34 by rhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	*ft_memset(void *b, int c, size_t len)
 	return (b);
 }
 
-int	ft_strchr(const char *s, int c)
+static int	my_strchr(const char *s, int c)
 {
 	int	ret;
 
@@ -75,7 +75,7 @@ char	*get_next_line(int fd)
 	while (read_flag > 0)
 	{
 		pre[0] = ft_strjoin(pre[0], buff);
-		if (ft_strchr(pre[0], '\n') >= 0)
+		if (my_strchr(pre[0], '\n') >= 0)
 			break ;
 		ft_memset(buff, 0, BUFFER_SIZE + 1);
 		read_flag = read(fd, buff, BUFFER_SIZE);
@@ -83,7 +83,7 @@ char	*get_next_line(int fd)
 	if (pre[0])
 	{
 		ret = ft_strdup_nl(pre[0]);
-		pre[0] = ft_substr_nl(pre[0], ft_strchr(pre[0], '\n') + 1);
+		pre[0] = ft_substr_nl(pre[0], my_strchr(pre[0], '\n') + 1);
 	}
 	return (ret);
 }

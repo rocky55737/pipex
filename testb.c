@@ -21,9 +21,9 @@ int main(int ac, char **av, char **env)
     cmds = &(av[2]);
     
     in_out_fd[0] = open(av[1], O_RDONLY, 0644);
-    in_out_fd[1] = open(av[4], O_TRUNC | O_WRONLY | O_CREAT, 0644);
+    in_out_fd[1] = open(av[ac - 1], O_TRUNC | O_WRONLY | O_CREAT, 0644);
     fork_cnt = 0;
-    while (fork_cnt < 2)
+    while (fork_cnt < ac - 3)
     {
 		pipe(pipe_fd[fork_cnt % 2]);
         pids[fork_cnt] = fork();
@@ -91,7 +91,7 @@ int main(int ac, char **av, char **env)
 		}
         fork_cnt++;
     }
-    for (int a=0; a<2; a++)
+    for (int a=0; a< ac - 3; a++)
     {
         wait(0);
     }
