@@ -6,7 +6,7 @@
 /*   By: rhong <rhong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 15:04:23 by rhong             #+#    #+#             */
-/*   Updated: 2022/10/02 23:41:44 by rhong            ###   ########.fr       */
+/*   Updated: 2022/10/03 04:18:22 by rhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	wait_all(pid_t *pids, int pid_cnt)
 	waitpid(pids[pid_cnt - 1], &stat, 0);
 	while (cnt < pid_cnt)
 	{
-		waitpid(pids[cnt], 0, 0);
+		waitpid(pids[cnt], 0, 32);
 		cnt++;
 	}
 	if (stat == 11)

@@ -6,7 +6,7 @@
 /*   By: rhong <rhong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 15:56:18 by rhong             #+#    #+#             */
-/*   Updated: 2022/10/02 20:18:11 by rhong            ###   ########.fr       */
+/*   Updated: 2022/10/03 05:52:21 by rhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,5 @@ void	here_doc(int ac, char **av, char **env)
 		}
 		fork_cnt++;
 	}
-	unlink("/tmp/.here_doc.txt");
-	wait_all(p_data->pids, p_data->cmd_cnt);
+	wait_all(p_data->pids, p_data->cmd_cnt, 1);
 }

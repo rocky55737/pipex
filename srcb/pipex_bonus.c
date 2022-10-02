@@ -6,7 +6,7 @@
 /*   By: rhong <rhong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 15:56:52 by rhong             #+#    #+#             */
-/*   Updated: 2022/10/02 23:20:42 by rhong            ###   ########.fr       */
+/*   Updated: 2022/10/03 05:38:28 by rhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	pipex_bonus(int ac, char **av, char **env);
 void	multi_pipe(int ac, char **av, char **env);
 void	close_pipes(int fd_arr[2]);
-void	wait_all(pid_t *pids, int pid_cnt);
+void	wait_all(pid_t *pids, int pid_cnt, int heredoc);
 
 void	pipex_bonus(int ac, char **av, char **env)
 {
@@ -52,7 +52,7 @@ void	multi_pipe(int ac, char **av, char **env)
 		}
 		fork_cnt++;
 	}
-	wait_all(p_data->pids, p_data->cmd_cnt);
+	wait_all(p_data->pids, p_data->cmd_cnt, 0);
 }
 
 void	close_pipes(int fd_arr[2])
@@ -65,7 +65,7 @@ void	close_pipes(int fd_arr[2])
 	fd_arr[1] = 0;
 }
 
-void	wait_all(pid_t *pids, int pid_cnt)
+void	wait_all(pid_t *pids, int pid_cnt, int heredoc)
 {
 	int	cnt;
 	int	stat;
@@ -74,9 +74,11 @@ void	wait_all(pid_t *pids, int pid_cnt)
 	waitpid(pids[pid_cnt - 1], &stat, 0);
 	while (cnt < pid_cnt)
 	{
-		waitpid(pids[cnt], 0, 0);
+		waitpid(pids[cnt], 0, 32);
 		cnt++;
 	}
+	if (heredoc)
+		unlink("here_doc.txt");
 	if (stat == 11)
 		exit(127);
 	else
