@@ -6,7 +6,7 @@
 /*   By: rhong <rhong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 15:04:23 by rhong             #+#    #+#             */
-/*   Updated: 2022/10/02 23:11:22 by rhong            ###   ########.fr       */
+/*   Updated: 2022/10/02 23:41:44 by rhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,5 @@ void	wait_all(pid_t *pids, int pid_cnt)
 	if (stat == 11)
 		exit(127);
 	else
-		exit(stat);
+		exit(stat >> 8);
 }

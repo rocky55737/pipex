@@ -6,7 +6,7 @@
 /*   By: rhong <rhong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 15:55:59 by rhong             #+#    #+#             */
-/*   Updated: 2022/10/02 23:37:27 by rhong            ###   ########.fr       */
+/*   Updated: 2022/10/02 23:50:23 by rhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,9 @@ char	*find_cmd_path(t_p_data *p_data, char *cmd)
 	while (all_paths[cnt] && access(all_paths[cnt], X_OK) != 0)
 		cnt++;
 	if (all_paths[cnt] == 0)
+	{
 		command_not_found(cmd);
+	}
 	return (all_paths[cnt]);
 }
 
@@ -44,7 +46,8 @@ static void	command_not_found(char *cmd)
 {
 	char	*buff;
 
-	buff = ft_strjoin(ft_strjoin("pipex: ", cmd), ": command not found");
+	buff = ft_strdup("pipex: ");
+	buff = ft_strjoin(ft_strjoin(buff, cmd), ": command not found");
 	write(2, buff, ft_strlen(buff));
 	exit(127);
 }
