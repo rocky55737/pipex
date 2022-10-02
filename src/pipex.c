@@ -6,7 +6,7 @@
 /*   By: rhong <rhong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 15:04:23 by rhong             #+#    #+#             */
-/*   Updated: 2022/10/02 20:07:58 by rhong            ###   ########.fr       */
+/*   Updated: 2022/10/02 20:24:16 by rhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	pipex(int ac, char **av, char **env);
 void	close_pipes(int fd_arr[2]);
-int		wait_all(pid_t *pids, int pid_cnt);
+void	wait_all(pid_t *pids, int pid_cnt);
 
 void	pipex(int ac, char **av, char **env)
 {
@@ -34,7 +34,7 @@ void	pipex(int ac, char **av, char **env)
 		fork_cnt++;
 	}
 	close_pipes(p_data->pipes_fd);
-	exit(wait_all(p_data->pids, p_data->cmd_cnt));
+	wait_all(p_data->pids, p_data->cmd_cnt);
 }
 
 void	close_pipes(int fd_arr[2])
@@ -47,7 +47,7 @@ void	close_pipes(int fd_arr[2])
 	fd_arr[1] = 0;
 }
 
-int	wait_all(pid_t *pids, int pid_cnt)
+void	wait_all(pid_t *pids, int pid_cnt)
 {
 	int	cnt;
 	int	stat;
@@ -58,5 +58,5 @@ int	wait_all(pid_t *pids, int pid_cnt)
 		waitpid(pids[cnt], &stat, 0);
 		cnt++;
 	}
-	return (stat);
+	exit(stat);
 }

@@ -6,7 +6,7 @@
 /*   By: rhong <rhong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 17:08:49 by rhong             #+#    #+#             */
-/*   Updated: 2022/10/02 19:57:28 by rhong            ###   ########.fr       */
+/*   Updated: 2022/10/02 20:14:24 by rhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,6 @@ void		child(t_p_data *p_data, int fork_cnt);
 char		**set_cmd(char *cmd_to_set);
 char		**rm_quotes(char *str);
 char		*find_cmd_path(t_p_data *p_data, char *cmd);
-int			wait_all(pid_t *pids, int pid_cnt);
+void		wait_all(pid_t *pids, int pid_cnt);
 
 #endif

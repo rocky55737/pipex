@@ -6,7 +6,7 @@
 /*   By: rhong <rhong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 17:08:49 by rhong             #+#    #+#             */
-/*   Updated: 2022/10/02 20:06:33 by rhong            ###   ########.fr       */
+/*   Updated: 2022/10/02 20:18:39 by rhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ void		child(t_p_data *p_data, int fork_cnt);
 char		**set_cmd(char *cmd_to_set);
 char		**rm_quotes(char *str);
 char		*find_cmd_path(t_p_data *p_data, char *cmd);
-int			here_doc(int ac, char **av, char **env);
+void		here_doc(int ac, char **av, char **env);
 t_p_data	*h_set_p_data(int ac, char **av, char **env);
-int			multi_pipe(int ac, char **av, char **env);
+void		multi_pipe(int ac, char **av, char **env);
 int			input_err(int ac, char **av);
-int			wait_all(pid_t *pids, int pid_cnt);
+void		wait_all(pid_t *pids, int pid_cnt);
 
 #endif
