@@ -6,7 +6,7 @@
 /*   By: rhong <rhong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 15:55:35 by rhong             #+#    #+#             */
-/*   Updated: 2022/10/02 21:01:02 by rhong            ###   ########.fr       */
+/*   Updated: 2022/10/02 23:31:24 by rhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	dups(t_p_data *p_data, int fork_cnt)
 	{
 		if (p_data->in_out_fd[0] == -1)
 		{
-			perror("no such file or directory");
+			perror("pipex: input");
 			exit(1);
 		}
 		dup2(p_data->in_out_fd[0], 0);
@@ -45,10 +45,7 @@ static void	dups(t_p_data *p_data, int fork_cnt)
 	else if (fork_cnt == p_data->cmd_cnt - 1)
 	{
 		if (p_data->in_out_fd[1] == -1)
-		{
-			perror("");
-			exit(1);
-		}
+			exit(0);
 		dup2(p_data->pipes_fd[(fork_cnt + 1) % 2][0], 0);
 		dup2(p_data->in_out_fd[1], 1);
 	}
