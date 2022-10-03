@@ -6,7 +6,7 @@
 /*   By: rhong <rhong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 15:56:09 by rhong             #+#    #+#             */
-/*   Updated: 2022/10/03 05:51:58 by rhong            ###   ########.fr       */
+/*   Updated: 2022/10/03 09:56:00 by rhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static int	h_infile_open(char *infile_path, char *limiter)
 	char	*buffer;
 	char	*n_lim;
 
-	fd = open(infile_path, O_CREAT | O_RDWR, 0644);
+	fd = open(infile_path, O_CREAT | O_WRONLY, 0644);
 	n_lim = ft_strjoin(ft_strdup(limiter), ft_strdup("\n"));
 	buffer = get_next_line(0);
 	while (ft_strcmp(n_lim, buffer) != 0)
@@ -56,6 +56,8 @@ static int	h_infile_open(char *infile_path, char *limiter)
 		buffer = get_next_line(0);
 	}
 	free(buffer);
+	close(fd);
+	fd = open(infile_path, O_RDONLY, 0644);
 	return (fd);
 }
 
