@@ -6,7 +6,7 @@
 /*   By: rhong <rhong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 15:56:52 by rhong             #+#    #+#             */
-/*   Updated: 2022/10/03 05:38:28 by rhong            ###   ########.fr       */
+/*   Updated: 2022/10/04 15:02:04 by rhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,6 @@ void	wait_all(pid_t *pids, int pid_cnt, int heredoc)
 	}
 	if (heredoc)
 		unlink("here_doc.txt");
-	if (stat == 11)
-		exit(127);
-	else
+	if (stat)
 		exit(stat >> 8);
 }
